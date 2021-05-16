@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState,useRef } from "react";
 import "./App.css";
 import loser from './img/loser.png'
 import winner from './img/winner.png'
@@ -111,11 +111,10 @@ export default function App() {
   const [value, setValue] = useState("");
   const [error, setError] = useState("");
   const [isValid, setIsValid] = useState(false);
-  const [open,setOpen]=useState(false)
+  const [open,setOpen]=useState(false);
   const [list, setList] = useState([
     { inputValue: "", bull: 0, cow: 0, show: false }
   ]);
-
 
   function IsValidJSONString(str) {
     const reg = /^[a-z,\s]{4}$/;
@@ -137,9 +136,16 @@ export default function App() {
     }
   }
 
+  const inputRef = useRef(null);
+
+
   const handleChange = (e) => {
     setOpen(true)
     setValue(e.target.value.toLowerCase());
+    if (e.target.value === '') {
+      setError(['Please pass a default value of `{}` for the buttonStyle ']);
+      return;
+    }
     const valid = IsValidJSONString(e.target.value.toLowerCase());
 
     if (valid) {
@@ -149,9 +155,11 @@ export default function App() {
       setIsValid(false);
       setError(`Please enter only 4 unique characters`);
     }
+    
   };
 
   const handleSubmit = () => {
+   
     setOpen(true)
     if (isValid) {
       let bCount = 0;
@@ -197,6 +205,7 @@ export default function App() {
 
       setList(newItems);
       setValue("");
+      setIsValid(false);
     }
   };
   return (
@@ -221,21 +230,26 @@ export default function App() {
           onChange={handleChange}
           className="input-box"
           maxLength="4"
+          ref={inputRef}
+          autoFocus
         />
-        <input
-          value="Submit"
+        <button
           onClick={handleSubmit}
           className="button"
-        />
+          disabled={!isValid}
+        >
+          Submit
+          </button>
       </div>
       <div className="error">{error}</div>
+      <div className="list-container">
       {
         list.length<=10 ? list.map((content, index) => (
         <>
         {
-          content.bull === 4 ? <div><img src={winner} alt="winner" className="loser"/><p className="word">Word was <span style={{color:"red"}}>{arr}</span></p></div>:
+          content.bull === 4 ? <div key={`index+${index}`}><img src={winner} alt="winner" className="loser"/><p className="word">Word was <span style={{color:"red"}}>{arr}</span></p></div>:
         
-          <div className="row">
+          <div className="row" key={index}>
             {content.show && (
               <>
                 <div className="input-value">{content.inputValue}</div>
@@ -253,6 +267,7 @@ export default function App() {
         <p className="word">Word was <span style={{color:"red"}}>{arr}</span></p>
       </div>
       }
+    </div>
     </div>
     </>
     )}

@@ -84,6 +84,10 @@
   color: #fff;
   margin-top: -50px;
 }
+.list-container{
+  height: 400px;
+  overflow: scroll;
+}
 
 @media only screen and (max-width: 778px) {
   .App {
@@ -92,5 +96,8 @@
   }
   .play-container{
     width: 70%;
+  }
+  .list-container{
+    height: 300px;
   }
 }
