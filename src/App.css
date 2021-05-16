@@ -39,6 +39,7 @@
   padding: 30px;
   width: 40%;
   margin: auto;
+  background-color: aliceblue;
 }
 .input-main {
   width: 100%;
@@ -81,8 +82,8 @@
   margin-top: 40px;
 }
 .word{
-  color: #fff;
-  margin-top: -50px;
+  color: aliceblue;
+  margin-top: -35px;
 }
 .list-container{
   height: 400px;

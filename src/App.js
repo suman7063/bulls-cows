@@ -1,4 +1,4 @@
-import { useState,useRef } from "react";
+import { useState,useRef, useEffect } from "react";
 import "./App.css";
 import loser from './img/loser.png'
 import winner from './img/winner.png'
@@ -138,7 +138,6 @@ export default function App() {
 
   const inputRef = useRef(null);
 
-
   const handleChange = (e) => {
     setOpen(true)
     setValue(e.target.value.toLowerCase());
@@ -208,6 +207,7 @@ export default function App() {
       setIsValid(false);
     }
   };
+  console.log(arr,"dfg")
   return (
     <>
     {!open &&(
@@ -247,7 +247,7 @@ export default function App() {
         list.length<=10 ? list.map((content, index) => (
         <>
         {
-          content.bull === 4 ? <div key={`index+${index}`}><img src={winner} alt="winner" className="loser"/><p className="word">Word was <span style={{color:"red"}}>{arr}</span></p></div>:
+          content.bull === 4 ? <div key={`index+${index}`}><img src={winner} alt="winner" className="loser"/><p className="word">The Word Was <span style={{textDecoration: 'underline solid aliceblue'}}>{arr}</span></p></div>:
         
           <div className="row" key={index}>
             {content.show && (
@@ -264,7 +264,7 @@ export default function App() {
       )):
       <div>
         <img src={loser} alt="loser" className="loser"/>
-        <p className="word">Word was <span style={{color:"red"}}>{arr}</span></p>
+        <p className="word">The Word Was <span style={{textDecoration: 'underline solid aliceblue'}}>{arr}</span></p>
       </div>
       }
     </div>
