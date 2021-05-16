@@ -1,6 +1,7 @@
 import { useState } from "react";
 import "./App.css";
-
+import loser from './img/loser.png'
+import winner from './img/winner.png'
 const random = [
   "like",
   "lift",
@@ -110,9 +111,11 @@ export default function App() {
   const [value, setValue] = useState("");
   const [error, setError] = useState("");
   const [isValid, setIsValid] = useState(false);
+  const [open,setOpen]=useState(false)
   const [list, setList] = useState([
     { inputValue: "", bull: 0, cow: 0, show: false }
   ]);
+
 
   function IsValidJSONString(str) {
     const reg = /^[a-z,\s]{4}$/;
@@ -135,6 +138,7 @@ export default function App() {
   }
 
   const handleChange = (e) => {
+    setOpen(true)
     setValue(e.target.value.toLowerCase());
     const valid = IsValidJSONString(e.target.value.toLowerCase());
 
@@ -148,6 +152,7 @@ export default function App() {
   };
 
   const handleSubmit = () => {
+    setOpen(true)
     if (isValid) {
       let bCount = 0;
       let cCount = 0;
@@ -195,8 +200,21 @@ export default function App() {
     }
   };
   return (
-    <div className="App">
-      <div onSubmit={handleSubmit} className="input-main">
+    <>
+    {!open &&(
+    <div className="main-container" style={{display: open ? "none":"flex"}}>    
+    <div className="play-container">
+      <div className="play"  onClick={()=>{setOpen(true)}}>Play</div>
+      <h4>Bulls and Cows</h4>
+    </div>
+    
+    </div>
+    )}
+    
+    {open && (  <>
+      <h1 className="welcome">Welcome</h1>
+      <div className="App">
+      <div className="input-main">
         <input
           type="text"
           value={value}
@@ -205,15 +223,18 @@ export default function App() {
           maxLength="4"
         />
         <input
-          type="submit"
           value="Submit"
           onClick={handleSubmit}
           className="button"
         />
       </div>
       <div className="error">{error}</div>
-      {list.map((content, index) => (
+      {
+        list.length<=10 ? list.map((content, index) => (
         <>
+        {
+          content.bull === 4 ? <div><img src={winner} alt="winner" className="loser"/><p className="word">Word was <span style={{color:"red"}}>{arr}</span></p></div>:
+        
           <div className="row">
             {content.show && (
               <>
@@ -224,9 +245,18 @@ export default function App() {
               </>
             )}
           </div>
+        }
         </>
-      ))}
+      )):
+      <div>
+        <img src={loser} alt="loser" className="loser"/>
+        <p className="word">Word was <span style={{color:"red"}}>{arr}</span></p>
+      </div>
+      }
     </div>
+    </>
+    )}
+    </>
   );
 }
 

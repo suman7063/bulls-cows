@@ -1,3 +1,36 @@
+
+
+.main-container{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+.play-container{
+  width: 40%;
+  border-radius: 5px;
+  box-shadow: 1px 3px 5px 0 rgb(51 49 49 / 33%);
+  background-color: #fff;
+  text-align: center;
+  padding: 80px 30px;
+  margin: auto;
+}
+.welcome{
+  text-align: center;
+}
+
+.play{
+  background-color: cadetblue;
+  width: 200px;
+  height: 40px;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: auto;
+  color: #fff;
+}
 .App {
   font-family: sans-serif;
   text-align: center;
@@ -20,6 +53,7 @@
   width: 20%;
   background-color: lightblue;
   border: 1px solid lightblue;
+  text-align: center;
 }
 .row {
   width: 100%;
@@ -42,10 +76,21 @@
   text-align: left;
   color: red;
 }
+.loser{
+  width: 100%;
+  margin-top: 40px;
+}
+.word{
+  color: #fff;
+  margin-top: -50px;
+}
 
 @media only screen and (max-width: 778px) {
   .App {
     padding: 30px 10px;
     width: 90%;
+  }
+  .play-container{
+    width: 70%;
   }
 }
