@@ -207,7 +207,6 @@ export default function App() {
       setIsValid(false);
     }
   };
-  console.log(arr,"dfg")
   return (
     <>
     {!open &&(
