@@ -202,7 +202,7 @@ export default function App() {
           value={value}
           onChange={handleChange}
           className="input-box"
-          // maxLength="4"
+          maxLength="4"
         />
         <input
           type="submit"
