@@ -115,7 +115,7 @@ export default function App() {
   ]);
 
   function IsValidJSONString(str) {
-    const reg = /^[a-z,\s]{4,}$/;
+    const reg = /^[a-z,\s]{4}$/;
     let uniq = "";
     let flag = false;
     let enterValue = reg.test(str);
@@ -143,7 +143,7 @@ export default function App() {
       setIsValid(true);
     } else {
       setIsValid(false);
-      setError(`please enter only alphabets and unique value`);
+      setError(`Please enter only 4 unique characters`);
     }
   };
 
@@ -202,7 +202,7 @@ export default function App() {
           value={value}
           onChange={handleChange}
           className="input-box"
-          maxLength="4"
+          // maxLength="4"
         />
         <input
           type="submit"
