@@ -1,5 +1,3 @@
-
-
 .main-container{
   display: flex;
   flex-direction: column;
@@ -19,7 +17,6 @@
 .welcome{
   text-align: center;
 }
-
 .play{
   background-color: cadetblue;
   width: 200px;
