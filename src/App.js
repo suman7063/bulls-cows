@@ -115,7 +115,7 @@ export default function App() {
   ]);
 
   function IsValidJSONString(str) {
-    const reg = /^[a-z]+$/;
+    const reg = /^[a-z,\s]{4,}$/;
     let uniq = "";
     let flag = false;
     let enterValue = reg.test(str);
